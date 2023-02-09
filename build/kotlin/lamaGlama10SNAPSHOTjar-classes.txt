@@ -1,0 +1,1 @@
+C:\Users\a.babik\MyProject\lamaGlama\build\classes\kotlin\main\MainKt.class;C:\Users\a.babik\MyProject\lamaGlama\build\classes\kotlin\main\Math$Companion.class;C:\Users\a.babik\MyProject\lamaGlama\build\classes\kotlin\main\Math.class
