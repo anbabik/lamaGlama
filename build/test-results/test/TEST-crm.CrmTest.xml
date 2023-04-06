@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="crm.CrmTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-09T16:58:56" hostname="OSPBNTB3165" time="0.086">
-  <properties/>
-  <testcase name="testCVWrite()" classname="crm.CrmTest" time="0.086"/>
-  <system-out><![CDATA[Your #main-menu is saved!
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

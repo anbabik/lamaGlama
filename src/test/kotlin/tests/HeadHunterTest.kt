@@ -1,39 +1,30 @@
 package tests
 
+import com.codeborne.selenide.Selenide
 import core.BaseTest
+import core.Config
+import core.attachBrowserConsoleLog
+import core.attachText
 import core.service.MockLoadServiceImpl
 import crm.FileServiceImpl
 import hh.pages.HeadHunterLoginPage
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class HeadHunterTest: BaseTest() {
+class HeadHunterTest : BaseTest() {
 
     companion object {
         val fileService = FileServiceImpl()
         val mockService = MockLoadServiceImpl()
     }
 
-    /*
-    @BeforeTest
-    fun openBaseURL(){
-        Selenide.open(Config.HH_BASE_URL)
-        //       Thread.sleep(10_000)
-        assertEquals(Config.BASE_URL, WebDriverRunner.getWebDriver().currentUrl)
-    }
-     */
-
-//    @Test
-//    @DisplayName("test login by password")
-//    fun testLoginByPassword() {
-//        Selenide.open(Config.HH_LOGIN_URL)
-//        HeadHunterLoginPage().loginByPassword()
-//        Thread.sleep(10_000)
-//        assertEquals("https://hh.ru/?hhtmFrom=account_login", WebDriverRunner.getWebDriver().currentUrl)
-//
-//    }
-
     @Test
-    fun loadTest(){
-        HeadHunterLoginPage().checkDownloadCv(mockService)
+    @DisplayName("test login by password")
+    fun testLoginByPassword() {
+        Selenide.open(Config.HH_LOGIN_URL)
+        attachText("message", "some attached text")
+        attachBrowserConsoleLog("Console")
+        HeadHunterLoginPage().loginByPass()
     }
+
 }

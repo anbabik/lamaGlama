@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.21"
     application
+    id("io.qameta.allure") version "2.11.2"
 }
 
 group = "org.example"
@@ -17,24 +18,30 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 // https://mavenlibs.com/maven/dependency/com.codeborne/selenide
-    testImplementation("com.codeborne:selenide:6.11.2")
-    testImplementation ("io.rest-assured:rest-assured:5.2.0")
-    testImplementation ("io.rest-assured:kotlin-extensions:5.2.0")
+    implementation("com.codeborne:selenide:6.12.2")
+    implementation ("io.rest-assured:rest-assured:5.2.1")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 // Allure
+    testImplementation ("org.aspectj:aspectjweaver:1.9.5")
     implementation ("io.qameta.allure:allure-junit5:${allureVersion}")
+    // implementation ("io.qameta.allure:allure-commandline:${allureVersion}")
     implementation ("io.qameta.allure:allure-assertj:${allureVersion}")
     implementation ("io.qameta.allure:allure-rest-assured:${allureVersion}")
     implementation ("io.qameta.allure:allure-java-commons:${allureVersion}")
     implementation ("io.qameta.allure:allure-selenide:${allureVersion}")
-
-    testImplementation ("org.aspectj:aspectjweaver:1.9.5")
 }
 
 tasks.test {
+
     useJUnitPlatform()
+    testLogging {
+        events("PASSED", "STARTED", "FAILED", "SKIPPED")
+    }
+
 }
+
+
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"

@@ -5,20 +5,18 @@ import com.codeborne.selenide.Selectors.*
 import com.codeborne.selenide.Selenide.*
 import com.codeborne.selenide.SelenideElement
 import core.Config
-import core.Interaction
 import core.service.LoadService
 import io.qameta.allure.Step
 import kotlin.test.assertEquals
 
 class HeadHunterLoginPage {
     private val buttonSelectPassword = element(byXpath("//button[@data-qa=\"expand-login-by-password\"]"))
-    //private val buttonSignupSubmit = element(byXpath("//button[@data-qa=\"account-login-submit\"]"))
-    private val buttonSignupSubmit = element(byXpath("//div[@class=\"account-login-actions\"]//button[@data-qa=\"account-login-submit\"]"))
+    private val titleMyResume = element(byXpath("//*[@id=\"HH-React-Root\"]/div/div[2]/div[1]/div/div/div/div[1]/div"))
+    private val buttonSignupSubmit = element(byXpath("//button[@data-qa='account-login-submit']"))
     private val fieldLogin = element(byXpath("//input[@name=\"username\" and @inputmode=\"email\"]"))
     private val inputLogin = element(byXpath("//input[@type=\"hidden\" and @name=\"username\"]"))
     private val fieldPassword = element(byXpath("//input[@data-qa=\"login-input-password\"]"))
-//           val mainMenu = element(byXpath("//button[@data-qa=\"mainmenu_applicantProfile\"]"))
-//           val userName = element(byXpath("//a[@data-qa=\"mainmenu_applicantInfo\"]//span")).shouldBe(visible).text()
+
 
     @Step("Ввести значение в поле")
     fun setInput(field:SelenideElement, input:String): HeadHunterLoginPage {
@@ -34,7 +32,7 @@ class HeadHunterLoginPage {
         return this
     }
 
-
+/*
     @Step("Войти в аккаунт с помощью пароля")
     fun loginByPassword(): HeadHunterLoginPage {
         buttonSelectPassword.click()
@@ -45,6 +43,19 @@ class HeadHunterLoginPage {
         Thread.sleep(4000)
         element("#rc-anchor-container > div.rc-anchor-content > div:nth-child(1) > div").click()
         Thread.sleep(4000)
+        return this
+    }
+
+ */
+
+    @Step("Войти в акк по паролю")
+    fun loginByPass(): HeadHunterLoginPage {
+        buttonSelectPassword.click()
+        setInput(fieldLogin, Config.USER_LOGIN)
+        setInput(fieldPassword, Config.USER_PASSWORD)
+        clickAfterPause(5_000, buttonSignupSubmit)
+        //assertEquals(titleMyResume.text, "Мои резюме")
+        Thread.sleep(10_000)
         return this
     }
 
